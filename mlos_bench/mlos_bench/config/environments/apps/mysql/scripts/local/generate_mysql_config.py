@@ -16,8 +16,9 @@ import argparse
 def _main(fname_input: str, fname_output: str) -> None:
     with open(fname_input, "rt", encoding="utf-8") as fh_tunables, \
          open(fname_output, "wt", encoding="utf-8", newline="") as fh_config:
+        fh_config.write("[mysqld]\n")
         for (key, val) in json.load(fh_tunables).items():
-            line = f'{key} {val}'
+            line = f'{key}={val}'
             fh_config.write(line + "\n")
             print(line)
 
